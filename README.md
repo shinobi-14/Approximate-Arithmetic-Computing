@@ -53,3 +53,16 @@ Error Monitor
 |_ If error < threshold → FSM allows more approximation for better speed/power.
 
 ```
+
+
+## Operating Modes
+<div align="center">
+
+| **Mode 0 (Exact RCA)** | **Mode 1 (Low Approx – Carry Cut @ FA1→FA2)** | **Mode 2 (Medium Approx – Lower-Part OR in FA0)** | **Mode 3 (High Approx – OR + Speculative Carry Prediction)** |
+|:-----------------------|:-----------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------------|
+| <ul style="margin:0; padding-left:20px;"><li>Standard ripple-carry through FA0→FA3.</li><br><li><strong>Control:</strong> carry_cut_en=0, or_en=0, spec_pred_en=0 (No error, baseline accuracy and delay)</li></ul> | <ul style="margin:0; padding-left:20px;"><li>Carry propagation is blocked after FA1.</li><li><strong>Implementation:</strong> Multiplexer at carry wire forces Cin to FA2=0 when carry_cut_en=1.</li><li><strong>Effect:</strong><ul style="margin:0; padding-left:20px;"><li>Faster (carry chain depth = 2 instead of 4).</li><li>Error arises if FA1 generates a carry that should influence FA2/FA3.</li></ul></li></ul> | <ul style="margin:0; padding-left:20px;"><li>FA0 is replaced by an OR gate (Sum0 = A0&#124;B0).</li><li>Cin to FA1 is forced = 0 when or_en=1.</li><li>FA1–FA3 operate exactly.</li><li><strong>Effect:</strong><ul style="margin:0; padding-left:20px;"><li>Error ≤ 1 LSB.</li><li>Very small impact on accuracy, significant power reduction.</li></ul></li></ul> | <ul style="margin:0; padding-left:20px;"><li>Combines Mode 2 (FA0 → OR gate) + Speculative predictor for FA3.</li><li><strong>Implementation:</strong> Predictor guesses Cin to FA3 from inputs (e.g., if A2 & B2=1 → Cin3=1).</li><li><strong>Effect:</strong><ul style="margin:0; padding-left:20px;"><li>Eliminates long carry dependency.</li><li>Large potential errors if prediction is wrong.</li><li>Best performance and power savings.</li></ul></li></ul> |
+
+</div>
+
+
+
