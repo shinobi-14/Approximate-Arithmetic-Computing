@@ -36,8 +36,20 @@ flowchart TD
 ```
 FSM Controller
 |
-|_ Inputs: user defined mode, quality estimate/application requirements and runtime feedback from the error monitor.
+|_ Inputs: user-defined mode, quality estimate/application requirements and runtime feedback from the error monitor.
 |
-|_ Output control signals: 
+|_ Output control signals: mode[1:0] (00 = Exact, 01 = Mode1, 10 = Mode2, 11 = Mode3), along with carry_cut_en, or_en, and spec_pred_en.
+
+
+Control Signal Distribution
+|
+|_ These signals control multiplexers and enables inside the 4-bit and 16-bit RCA, allowing it to reconfigure dynamically without resynthesis.
+
+
+Error Monitor
+|
+|_ Continuously compares Approx Sum vs Exact Sum.
+|_ If error > threshold → FSM switches to a more accurate mode.
+|_ If error < threshold → FSM allows more approximation for better speed/power.
+
 ```
-    
