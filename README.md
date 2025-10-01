@@ -1,9 +1,14 @@
 # Approximate Arithmetic Design using Dynamic and Runtime Techniques
+Approximate computing is a way to save power and resources by allowing a trade-off in accuracy. Most existing designs use a fixed level of approximation, which makes them less flexible.
+
+This project proposes **dynamic techniques** with a **runtime-configurable arithmetic unit** that can switch between exact and approximate modes depending on what the system needs or performance constraints. This makes the design more energy-efficient, faster, and still good enough in terms of output quality, which can be useful for many applications.
+
+
+To demonstrate this, I have tried implementing the technique on a 4-bit Ripple Carry Adder (RCA) and a 16-bit RCA, with their simulation outputs/reports included in the repository.
+
+This project is still under development, and I’m still trying to have better control over power, delay, and accuracy trade-offs 😅.
 
 <br>
-<br>
-
-
 
 ## Functional Block Diagram
 
@@ -27,3 +32,12 @@ flowchart TD
     Error --> FSM
 ```
 
+## Working
+```
+FSM Controller
+|
+|_ Inputs: user defined mode, quality estimate/application requirements and runtime feedback from the error monitor.
+|
+|_ Output control signals: 
+```
+    
