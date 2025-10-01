@@ -20,8 +20,8 @@ flowchart TD
     FSM["FSM Controller<br/>━━━━━━━━━━━━━━━━━<br/>Generates mode signals<br/>Monitors error metrics<br/>Decides operation mode"]
     
     Input --> RCA
-    FSM -->|mode 0| RCA
-    FSM -->|mode 1| RCA
+    FSM -->|mode bit 0| RCA
+    FSM -->|mode bit 1| RCA
     RCA --> Output
     Output --> Error
     Error --> FSM
