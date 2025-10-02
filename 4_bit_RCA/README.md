@@ -7,7 +7,7 @@ For easy reference, the design comparison is given below.
 <br>
 
 ``` 
-Area 
+Area | Gate
 |
 |_ Accurate RCA: Compact design with 4 cells, total area = 78.718 units (only four 1-bit full adders `ADDFXL`).
 |
