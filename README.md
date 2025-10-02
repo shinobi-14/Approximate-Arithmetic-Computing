@@ -64,5 +64,5 @@ Error Monitor
 
 </div>
 
-
+Author: Prithvi Raj Singh (shinobi-14)
 
